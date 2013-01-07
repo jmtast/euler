@@ -52,49 +52,49 @@ matrix = Matrix[[8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77
 height = 19
 width = 19
 
-iMax = 0
-jMax = 0
-maxValH = 0
+i_max = 0
+j_max = 0
+max_val_h = 0
 product = 0
 
 # Cicle to check horizontal products.
 for i in 0...height
 	for j in 0..width-3
 		product = matrix[i,j] * matrix[i,j+1] * matrix[i,j+2] * matrix[i,j+3]
-		if product > maxValH
-			maxValH = product
-			iMax = i
-			jMax = j
+		if product > max_val_h
+			max_val_h = product
+			i_max = i
+			j_max = j
 			puts product
 		end
 	end
 end
 
-puts "El producto horizontal más grande es #{maxValH}, en la posición (i,j) = (#{iMax},#{jMax})"
+puts "El producto horizontal más grande es #{max_val_h}, en la posición (i,j) = (#{i_max},#{j_max})"
 
-iMax = 0
-jMax = 0
-maxValV = 0
+i_max = 0
+j_max = 0
+max_val_v = 0
 product = 0
 
 # Cicle to check vertical products.
 for i in 0...height-3
 	for j in 0..width
 		product = matrix[i,j] * matrix[i+1,j] * matrix[i+2,j] * matrix[i+3,j]
-		if product > maxValV
-			maxValV = product
-			iMax = i
-			jMax = j
+		if product > max_val_v
+			max_val_v = product
+			i_max = i
+			j_max = j
 			puts product
 		end
 	end
 end
 
-puts "El producto vertical más grande es #{maxValV}, en la posición (i,j) = (#{iMax},#{jMax})"
+puts "El producto vertical más grande es #{max_val_v}, en la posición (i,j) = (#{i_max},#{j_max})"
 
-iMax = 0
-jMax = 0
-maxValD = 0
+i_max = 0
+j_max = 0
+max_val_d = 0
 product = 0
 
 # Cicle to check diagonal products.
@@ -102,20 +102,20 @@ product = 0
 for i in 0...height-3
 	for j in 0..width-3
 		product = matrix[i,j] * matrix[i+1,j+1] * matrix[i+2,j+2] * matrix[i+3,j+3]
-		if product > maxValD
-			maxValD = product
-			iMax = i
-			jMax = j
+		if product > max_val_d
+			max_val_d = product
+			i_max = i
+			j_max = j
 			puts product
 		end
 	end
 end
 
-puts "El producto diagonal más grande es #{maxValD}, en la posición (i,j) = (#{iMax},#{jMax})"
+puts "El producto diagonal más grande es #{max_val_d}, en la posición (i,j) = (#{i_max},#{j_max})"
 
-iMax = 0
-jMax = 0
-maxValID = 0
+i_max = 0
+j_max = 0
+max_val_i_d = 0
 product = 0
 j = width
 
@@ -124,33 +124,33 @@ j = width
 for i in 0...height-3
 	while j > 2 do
 		product = matrix[i,j] * matrix[i-1,j-1] * matrix[i-2,j-2] * matrix[i-3,j-3]
-		if product > maxValID
-			maxValID = product
-			iMax = i
-			jMax = j
+		if product > max_val_i_d
+			max_val_i_d = product
+			i_max = i
+			j_max = j
 			puts product
 		end
 		j -= 1
 	end
 end
 
-puts "El producto de la diagonal inversa más grande es #{maxValID}, en la posición (i,j) = (#{iMax},#{jMax})"
+puts "El producto de la diagonal inversa más grande es #{max_val_i_d}, en la posición (i,j) = (#{i_max},#{j_max})"
 
-if maxValH > maxValV
-	maxVal = maxValH
+if max_val_h > max_val_v
+	max_val = max_val_h
 else
-	maxVal = maxValV
+	max_val = max_val_v
 end
 
-if maxValD > maxVal
-	maxVal = maxValD
+if max_val_d > max_val
+	max_val = max_val_d
 else
-	if maxValID > maxVal
-		maxVal = maxValID
+	if max_val_i_d > max_val
+		max_val = max_val_i_d
 	end
 end
 
-puts "El máximo valor es: #{maxVal}"
+puts "El máximo valor es: #{max_val}"
 
 # # in each iteration of the for loop I asume that "product" has the previous 4 number product, in this case, the product of the previous
 # # number, the current number, and the two numbers that follow.
@@ -161,10 +161,10 @@ puts "El máximo valor es: #{maxVal}"
 # 												# I don't need (the first one) and add the new number I need to multiply.
 # 		end
 # 		product = product * matrix[i+3,j]
-# 		if product > maxVal
-# 			maxVal = product
-# 			iMax = i
-# 			jMax = j
+# 		if product > max_val
+# 			max_val = product
+# 			i_max = i
+# 			j_max = j
 # 		end
 # 	end
 # end
