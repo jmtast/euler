@@ -58,16 +58,16 @@ max_val_h = 0
 product = 0
 
 # Cicle to check horizontal products.
-for i in 0...height
-	for j in 0..width-3
-		product = matrix[i,j] * matrix[i,j+1] * matrix[i,j+2] * matrix[i,j+3]
-		if product > max_val_h
-			max_val_h = product
-			i_max = i
-			j_max = j
-			puts product
-		end
-	end
+for i in 0..height
+  for j in 0..width-3
+    product = matrix[i,j] * matrix[i,j+1] * matrix[i,j+2] * matrix[i,j+3]
+    if product > max_val_h
+      max_val_h = product
+      i_max = i
+      j_max = j
+      #puts product
+    end
+  end
 end
 
 puts "El producto horizontal más grande es #{max_val_h}, en la posición (i,j) = (#{i_max},#{j_max})"
@@ -78,16 +78,16 @@ max_val_v = 0
 product = 0
 
 # Cicle to check vertical products.
-for i in 0...height-3
-	for j in 0..width
-		product = matrix[i,j] * matrix[i+1,j] * matrix[i+2,j] * matrix[i+3,j]
-		if product > max_val_v
-			max_val_v = product
-			i_max = i
-			j_max = j
-			puts product
-		end
-	end
+for i in 0..height-3
+  for j in 0..width
+    product = matrix[i,j] * matrix[i+1,j] * matrix[i+2,j] * matrix[i+3,j]
+    if product > max_val_v
+      max_val_v = product
+      i_max = i
+      j_max = j
+      #puts product
+    end
+  end
 end
 
 puts "El producto vertical más grande es #{max_val_v}, en la posición (i,j) = (#{i_max},#{j_max})"
@@ -99,16 +99,16 @@ product = 0
 
 # Cicle to check diagonal products.
 # diagonal = \
-for i in 0...height-3
-	for j in 0..width-3
-		product = matrix[i,j] * matrix[i+1,j+1] * matrix[i+2,j+2] * matrix[i+3,j+3]
-		if product > max_val_d
-			max_val_d = product
-			i_max = i
-			j_max = j
-			puts product
-		end
-	end
+for i in 0..height-3
+  for j in 0..width-3
+    product = matrix[i,j] * matrix[i+1,j+1] * matrix[i+2,j+2] * matrix[i+3,j+3]
+    if product > max_val_d
+      max_val_d = product
+      i_max = i
+      j_max = j
+      #puts product
+    end
+  end
 end
 
 puts "El producto diagonal más grande es #{max_val_d}, en la posición (i,j) = (#{i_max},#{j_max})"
@@ -121,50 +121,50 @@ j = width
 
 # Cicle to check inverse diagonal products.
 # inverse diagonal = /
-for i in 0...height-3
-	while j > 2 do
-		product = matrix[i,j] * matrix[i-1,j-1] * matrix[i-2,j-2] * matrix[i-3,j-3]
-		if product > max_val_i_d
-			max_val_i_d = product
-			i_max = i
-			j_max = j
-			puts product
-		end
-		j -= 1
-	end
+for i in 0..height-3
+  while j > 2 do
+    product = matrix[i,j] * matrix[i-1,j-1] * matrix[i-2,j-2] * matrix[i-3,j-3]
+    if product > max_val_i_d
+      max_val_i_d = product
+      i_max = i
+      j_max = j
+      #puts product
+    end
+    j -= 1
+  end
 end
 
 puts "El producto de la diagonal inversa más grande es #{max_val_i_d}, en la posición (i,j) = (#{i_max},#{j_max})"
 
 if max_val_h > max_val_v
-	max_val = max_val_h
+  max_val = max_val_h
 else
-	max_val = max_val_v
+  max_val = max_val_v
 end
 
 if max_val_d > max_val
-	max_val = max_val_d
+  max_val = max_val_d
 else
-	if max_val_i_d > max_val
-		max_val = max_val_i_d
-	end
+  if max_val_i_d > max_val
+    max_val = max_val_i_d
+  end
 end
 
 puts "El máximo valor es: #{max_val}"
 
 # # in each iteration of the for loop I asume that "product" has the previous 4 number product, in this case, the product of the previous
 # # number, the current number, and the two numbers that follow.
-# for i in 1...width-3
-# 	for j in 0..height
-# 		if matrix[i-1,j] != 0
-# 			product = product / matrix[i-1,j]	# instead of computing each 4 number product each time, I take out from the product the number
-# 												# I don't need (the first one) and add the new number I need to multiply.
-# 		end
-# 		product = product * matrix[i+3,j]
-# 		if product > max_val
-# 			max_val = product
-# 			i_max = i
-# 			j_max = j
-# 		end
-# 	end
+# for i in 1..width-3
+#   for j in 0..height
+#     if matrix[i-1,j] != 0
+#       product = product / matrix[i-1,j] # instead of computing each 4 number product each time, I take out from the product the number
+#                         # I don't need (the first one) and add the new number I need to multiply.
+#     end
+#     product = product * matrix[i+3,j]
+#     if product > max_val
+#       max_val = product
+#       i_max = i
+#       j_max = j
+#     end
+#   end
 # end
