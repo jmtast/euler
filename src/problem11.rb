@@ -49,8 +49,6 @@ matrix = [[8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 
 height = 19
 width = 19
 
-i_max = 0
-j_max = 0
 max_val = 0
 product = 0
 
@@ -62,8 +60,6 @@ for i in 0..height
       product = matrix[i][j] * matrix[i][j+1] * matrix[i][j+2] * matrix[i][j+3]
       if product > max_val
         max_val = product
-        i_max = i
-        j_max = j
       end
     end
 
@@ -72,8 +68,6 @@ for i in 0..height
       product = matrix[i][j] * matrix[i+1][j] * matrix[i+2][j] * matrix[i+3][j]
       if product > max_val
         max_val = product
-        i_max = i
-        j_max = j
       end
     end
 
@@ -82,8 +76,6 @@ for i in 0..height
       product = matrix[i][j] * matrix[i+1][j+1] * matrix[i+2][j+2] * matrix[i+3][j+3]
       if product > max_val
         max_val = product
-        i_max = i
-        j_max = j
       end
     end
 
@@ -92,11 +84,9 @@ for i in 0..height
       product = matrix[i][j] * matrix[i+1][j-1] * matrix[i+2][j-2] * matrix[i+3][j-3]
       if product > max_val
         max_val = product
-        i_max = i
-        j_max = j
       end
     end
   end
 end
 
-puts "El máximo valor es #{max_val}, en la posición (i,j) = (#{i_max},#{j_max})"
+puts "El máximo valor de un producto de 4 números en la matríz es #{max_val}"
