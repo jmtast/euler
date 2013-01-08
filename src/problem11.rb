@@ -49,8 +49,7 @@ matrix = [[8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 
 height = 19
 width = 19
 
-max_val = 0
-product = 0
+max_product = 0
 
 for i in 0..height
   for j in 0..width
@@ -58,27 +57,27 @@ for i in 0..height
     # Check if the horizontal product can be made
     if j < width-2
       product = matrix[i][j] * matrix[i][j+1] * matrix[i][j+2] * matrix[i][j+3]
-      max_val = product if product > max_val
+      max_product = product if product > max_product
     end
 
     # Check if the vertical product can be made
     if i < height-2
       product = matrix[i][j] * matrix[i+1][j] * matrix[i+2][j] * matrix[i+3][j]
-      max_val = product if product > max_val
+      max_product = product if product > max_product
     end
 
     # Check if the diagonal product can be made
     if i < height-2 && j < width-2
       product = matrix[i][j] * matrix[i+1][j+1] * matrix[i+2][j+2] * matrix[i+3][j+3]
-      max_val = product if product > max_val
+      max_product = product if product > max_product
     end
 
     # Check if the inverse diagonal product can be made
     if i < height-2 && j > 2
       product = matrix[i][j] * matrix[i+1][j-1] * matrix[i+2][j-2] * matrix[i+3][j-3]
-      max_val = product if product > max_val
+      max_product = product if product > max_product
     end
   end
 end
 
-puts "El máximo valor de un producto de 4 números en la matríz es #{max_val}"
+puts max_product
