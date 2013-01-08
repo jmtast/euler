@@ -8,8 +8,18 @@ require "is_prime.rb"
 sum = 2
 current = 3
 
+print "Working..."
+
 while current < 2000000
   sum += current if current.prime?
 	current += 2
+  print " "
+  print " "
+  print " "
+  print "\b"
+  print "\b"
+  print "\b"
 end
+print "\n"
+puts "Done!"
 puts "Sum = #{sum}"
