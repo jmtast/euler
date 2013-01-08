@@ -58,10 +58,10 @@ max_val = 0
 product = 0
 
 for i in 0..height
-  for j in 0..height
+  for j in 0..width
     
     # Check if the horizontal product can be made
-    if j < width-3
+    if j < width-2
       product = matrix[i,j] * matrix[i,j+1] * matrix[i,j+2] * matrix[i,j+3]
       if product > max_val
         max_val = product
@@ -71,7 +71,7 @@ for i in 0..height
     end
 
     # Check if the vertical product can be made
-    if i < height-3
+    if i < height-2
       product = matrix[i,j] * matrix[i+1,j] * matrix[i+2,j] * matrix[i+3,j]
       if product > max_val
         max_val = product
@@ -81,7 +81,7 @@ for i in 0..height
     end
 
     # Check if the diagonal product can be made
-    if i < height-3 && j < width-3
+    if i < height-2 && j < width-2
       product = matrix[i,j] * matrix[i+1,j+1] * matrix[i+2,j+2] * matrix[i+3,j+3]
       if product > max_val
         max_val = product
@@ -91,8 +91,8 @@ for i in 0..height
     end
 
     # Check if the inverse diagonal product can be made
-    if i > 2 && j >2
-      product = matrix[i,j] * matrix[i-1,j-1] * matrix[i-2,j-2] * matrix[i-3,j-3]
+    if i < height-2 && j > 2
+      product = matrix[i,j] * matrix[i+1,j-1] * matrix[i+2,j-2] * matrix[i+3,j-3]
       if product > max_val
         max_val = product
         i_max = i
