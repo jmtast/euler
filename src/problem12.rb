@@ -15,27 +15,38 @@
 
 # What is the value of the first triangle number to have over five hundred divisors?
 
-# primos = File.read("primos").split("[")
-# primos = primos[1].split("]")
-# primos = primos[0].split(",")
+# The general idea is:
+# Given any number n, if you calculate its square root (rounded down) you have a WAY smaller number (for exammple, the sqare root of 64 millions is 8000).
+# Let sqrt be the square root of the number n, if you then calculate the modulus between n and sqrt (i.e. n mod sqrt) you have two possible outcomes: it's 0 or it's not.
+# If it's 0, then sqrt divides n and n/sqrt divides n (this two numbers could be the same one).
+# Finally, extending this idea to all the numbers between 1 and sqrt, you can find every number that divides n, both prime and composite numbers.
 
-triangle = 1
-divisors = 1
-i = 1
-
-while true do
-  for number in 1..triangle
-    # print "#{divisors} "
-    # puts "#{triangle}"
-    divisors += 1 if triangle % number == 0
+class Fixnum
+  def number_of_divisors
+    divisors = 0
+    sqrt = Math.sqrt(self).to_i
+    (1..sqrt).each do |n|
+      if self/n != n && self % n == 0
+        divisors += 2
+      else
+        if self % n == 0
+          divisors += 1
+        end
+      end
+    end
+    return divisors
   end
-  print "#{divisors} #{i} "
-  puts "#{triangle}"
-  break if divisors >= 500
-  i += 1
-  triangle += i
-  divisors = 1
-  puts " "
 end
 
-puts triangle
+triangle = 1
+i = 2
+divisors = 0
+
+while divisors < 500 do
+  divisors = triangle.number_of_divisors
+  #puts "#{divisors} #{i} #{triangle}"    # For debugging purposes, uncomment to see the three terms involved in each iteration
+  triangle += i
+  i += 1
+end
+triangle -= i-1        # This line is to undo the last modification to the "triangle" variable, made by the last iteration which is not part of the answer.
+puts "#{triangle}"
