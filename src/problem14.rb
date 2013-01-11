@@ -24,7 +24,6 @@ class Fixnum
 end
 
 longest_chain = 1
-current_collatz = 0
 starting_number = 0
 
 for i in 1...1000000
@@ -34,7 +33,7 @@ for i in 1...1000000
     chain += 1
     number = number.collatz
   end
-  (longest_chain = chain) && (current_collatz = number) && (starting_number = i) if chain > longest_chain
+  (longest_chain = chain) && (starting_number = i) if chain > longest_chain
 end
 
 puts starting_number
