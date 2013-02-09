@@ -30,36 +30,11 @@
 # with a triangle containing one-hundred rows; it cannot be solved by brute force, and requires a clever method! ;o)
 
 class Element
+  attr_accessor :value, :best_sum
+  
   def initialize(num)
     @value = num.to_i
     @best_sum = 0
-  end
-
-  def value
-    @value
-  end
-
-  def best_sum
-    @best_sum
-  end
-
-  def set_val(num)
-    @value = num
-  end
-
-  def set_best_sum(num)
-    @best_sum = num
-  end
-end
-
-class Array
-  def printm
-    each do |row|
-      row.each do |element|
-        print "#{element.best_sum} "
-      end
-      print "\n"
-    end
   end
 end
 
@@ -81,21 +56,19 @@ end
 
 matrix.each_with_index do |row, i|
   row.each_with_index do |element, j|
+    previous = 0
     if i > 0
       if j > 0
         block = [matrix[i-1][j].best_sum, matrix[i][j-1].best_sum]
         sum = block.max
-        element.set_best_sum(sum + matrix[i][j].value)
+        previous = sum
       else
-        element.set_best_sum(matrix[i-1][j].best_sum + matrix[i][j].value)
+        previous = matrix[i-1][j].best_sum
       end
     else
-      if j > 0
-        element.set_best_sum(matrix[i][j-1].best_sum + matrix[i][j].value)
-      else
-        element.set_best_sum(matrix[i][j].value)
-      end
+        previous = matrix[i][j-1].best_sum if j > 0
     end
+    element.best_sum = previous + matrix[i][j].value
   end
 end
 
